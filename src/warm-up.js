@@ -12,28 +12,30 @@
 
 // var title = "Harry Potter";
 // var ...
+var title = "On The Road";
+var pages = 307;
 
 
 
 // Reassign (not initialize) your "pages" variable from above. An editor came around and
 // condensed the book, use a built in math operator to make the page count a quarter
-// of what it currently is 
+// of what it currently is.
 
-
+pages = pages / 4;
 
 // Initialize a new variable "movie", but leave it undefined
 
-
+var movie;
 
 // Create a variable named "sequel", and assign it to a be a sequel of your
 // book (made up or not!). Your sequel must make use of your "title" variable from above
 
-
+var sequel = `${title} Again`;
 
 // Initialize a new variable "isFavorite", and assign it to a boolean value indicating
 // if the book you chose is your favorite book or not
 
-
+var isFavorite = false;
 
 
 // Create a new variable named "isShortStory", and use a comparison operator to
@@ -41,7 +43,8 @@
 // variable should be true, otherwise it should be false. You MUST use a
 // comparison operator.
 
-
+var isShortStory;  
+if (pages < 25) {return isShortStory = true} else {return isShortStory = false};
 
 //------------------------- Conditionals -------------------------//
 
@@ -50,6 +53,11 @@
 // the statement 'I could read that in a day!', otherwise, log the statement 
 // 'Ok, maybe I could read that in a day and a half'
 
+if (pages < 1000) {
+    console.log(`I could read that in a day!`);
+} else {
+    console.log(`Ok' maybe I could read that in a day and a half.`);
+}
 
 
 // Express the following in code: If the variable "isFavorite" is true,
@@ -57,7 +65,11 @@
 // statement 'I recently read the [title] book'. In either case, the value stored in
 // the "title" variable should be included in the logged statement.
 
-
+if (isFavorite === true) {
+    console.log(`My favorite book is ${title}!`);
+} else {
+    console.log(`I recently read the ${title} book.`)
+}
 
 //------------------------- Arrays -------------------------//
 
@@ -65,17 +77,27 @@
 // Create a new variable "books" and assign it to an Array of 5 different
 // book titles, represented by their names as Strings.
 
+var books = [
+    `Ender's Game`, 
+    `A Wrinkle In Time`, 
+    `The Color Purple`, 
+    `Adventures of Huckleberry Finn`, 
+    `The Great Gatsby`
+];
 
 // Write the code to access the 3rd element of the Array, using bracket
 // notation.
 
+books[2];
 
 // Create a new variable "belowTwoHundred" and assign it to an Array of 12
 // different numbers below two hundred.
 
+var belowTwoHundred = [26, 84, 7, 13, 32, 156, 98, 75, 12, 124, 108, 47];
 
 // Write the code to access the 5th element of the array, using bracket notation.
 
+belowTwoHundred[4];
 
 //------------------------- Objects -------------------------//
 
@@ -83,6 +105,12 @@
 // keys: name, and hasThesaurus. The value for name should the string 'Webster's', and
 // the value for hasThesaurus should be false
 
+var dictionary = {
+    name: `Webster's`,
+    hasThesaurus: false
+}
 
 // Write the code to add the key of pageCount, with the value of 720. Use dot
 // notation to do this. DO NOT modify your code from above.
+
+dictionary.pageCount = 720;
