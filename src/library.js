@@ -10,68 +10,42 @@ function createLibrary(name){
 }
 
 function addBook(library, book){
-  if (book.genre === 'fantasy') {
-    return library.shelves.fantasy.push(book);
-  } else if (book.genre === 'fiction') {
-    return library.shelves.fiction.push(book);
-  } else if (book.genre === 'nonFiction') {
-    return library.shelves.nonFiction.push(book);
-  } else {
-    return
-  };
+  allShelves = Object.keys(library.shelves)
+  for (var i = 0; i < allShelves.length; i++) {
+    if (book.genre === allShelves[i]) {
+      library.shelves[book.genre].push(book);
+    }
+  }
+  return library;
 }
 
 function checkoutBook(library, title, genre){
-  var successMsg = `You have now checked out ${title} from the ${library.name}.`
-  var sorryMsg = `Sorry, there are currently no copies of ${title} available at the ${library.name}.`
-  var allShelves = Object.values(library.shelves);
-  var fantasyShelf = allShelves[0];
-  var nonFictionShelf = allShelves[1];
-  var fictionShelf = allShelves[2];
-
-  if (genre === 'fantasy') {
-    for (var i = 0; i < fantasyShelf.length; i++) {
-      if (title === fantasyShelf[i].title) {
-        library.shelves.fantasy.splice(i, 1);
-        return successMsg;
-      }
+  for (var i = 0; i < library.shelves[genre].length; i++) {
+    if (title === library.shelves[genre][i].title) {
+      library.shelves[genre].splice(i, 1);
+      return `You have now checked out ${title} from the ${library.name}.`;
     }
-    return sorryMsg;  
-  } else if (genre === 'nonFiction') {
-    for (var i = 0; i < fantasyShelf.length; i++) {
-      if (title === nonFictionShelf[i].title) {
-        library.shelves.nonFiction.splice(i, 1);
-        return successMsg;
-      }
-    }
-    return sorryMsg;  
-  } else if (genre === 'fiction') {
-    for (var i = 0; i < fictionShelf.length; i++) {
-      if (title === fictionShelf[i].title) {
-        library.shelves.fiction.splice(i, 1);
-        return successMsg;
-      }
-    }
-    return sorryMsg;  
   }
+  return `Sorry, there are currently no copies of ${title} available at the ${library.name}.`;
 }
 
 function takeStock(library, genre) {
-  var fantasyShelf = library.shelves.fantasy;
-  var nonFictionShelf = library.shelves.nonFiction;
-  var fictionShelf = library.shelves.fiction;
-  var allBooks = fantasyShelf.length + nonFictionShelf.length + fictionShelf.length;
-
-  if (genre === 'fantasy') {
-    return `There are a total of ${fantasyShelf.length} fantasy books at the ${library.name}.`;
-  } else if (genre === 'nonFiction') {
-    return `There are a total of ${nonFictionShelf.length} nonFiction books at the ${library.name}.`;
-  } else if (genre === 'fiction') {
-    return `There are a total of ${fictionShelf.length} fiction books at the ${library.name}.`;
-  } else if (!genre) {
-    return `There are a total of ${allBooks} books at the ${library.name}.`;
+  allShelves = Object.values(library.shelves);
+  totalBooks = [];
+  if (!genre) {
+    for (var i = 0; i < allShelves.length; i++) {
+      for (var j = 0; j < allShelves[i].length; j++) {
+        totalBooks.push(allShelves[i][j]);
+      }
+    }
+    return `There are a total of ${totalBooks.length} books at the ${library.name}.`
   } else {
-    return
+    for (var i = 0; i < library.shelves[genre].length; i++) {
+      if (library.shelves[genre][i].genre === genre){
+        
+        return `There are a total of ${library.shelves[genre].length} ${genre} books at the ${library.name}.`;
+      }
+    }
   }
 }
 
